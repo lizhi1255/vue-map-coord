@@ -1,0 +1,41 @@
+{
+  "name": "vue-map-coord",
+  "private": false,
+  "version": "1.0.1",
+  "description": "Coordinate pickup tool based on vue3 and GaoDe map",
+  "author": "lizhi",
+  "type": "module",
+  "scripts": {
+    "test": "vite",
+    "build": "vue-tsc --noEmit && vite build"
+  },
+  "main": "./dist/coord-map.es.js",
+  "module": "./dist/coord-map.es.js",
+  "unpkg": "./dist/coord-map.umd.js",
+  "types": "./dist/types/index.d.ts",
+  "style": "dist/style.css",
+  "exports": {
+    ".": {
+      "import": "./dist/coord-map.es.js",
+      "require": "./dist/coord-map.umd.js",
+      "types": "./dist/types/CoordMap.vue.d.ts"
+    },
+    "./*": "./*"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "vue": "^3.2.39"
+  },
+  "devDependencies": {
+    "@types/node": "^18.8.3",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "ant-design-vue": "^3.2.12",
+    "less": "^4.1.3",
+    "typescript": "^4.6.4",
+    "unplugin-vue-components": "^0.22.7",
+    "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.6.6",
+    "vue-tsc": "^0.40.4"
+  },
+  "license": "MIT"
+}
