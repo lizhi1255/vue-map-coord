@@ -4,7 +4,16 @@
   "version": "1.0.1",
   "description": "Coordinate pickup tool based on vue3 and GaoDe map",
   "author": "lizhi",
-  "type": "module",
+  "keywords": [
+    "vue",
+    "vue3",
+    "map",
+    "coordinate",
+    "point-selection",
+    "coordinate-choose",
+    "vue-map-coord",
+    "vue3-map-coord"
+  ],
   "scripts": {
     "test": "vite",
     "build": "vue-tsc --noEmit && vite build"
@@ -22,6 +31,11 @@
     },
     "./*": "./*"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lizhi1255/vue-map-coord.git"
+  },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "vue": "^3.2.39"
@@ -36,6 +50,5 @@
     "vite": "^3.1.0",
     "vite-plugin-dts": "^1.6.6",
     "vue-tsc": "^0.40.4"
-  },
-  "license": "MIT"
+  }
 }
