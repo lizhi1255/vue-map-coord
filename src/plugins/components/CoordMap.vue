@@ -17,7 +17,6 @@ interface Props {
     center?: number[], //地图中心
     zoom?: number, //地图层级
     satellite?: boolean, //是否开启卫星图
-
   },
   position?: SORN[] //[lng,lat]
 }
@@ -287,7 +286,7 @@ defineExpose({ resetMap, destroyMap })
 </script>
 
 <template>
-  <a-spin :spinning="initLoading" size="large">
+  <a-spin :spinning="initLoading" size="large" wrapperClassName="spinWrap">
     <div class="map-container" id="map"
       :style="{ width: mapConfig.width || '100%', height: mapConfig.height || '100%' }">
       <div class="toolbar">
@@ -368,12 +367,19 @@ defineExpose({ resetMap, destroyMap })
         </div>
 
       </div>
-
     </div>
   </a-spin>
 </template>
 
 <style scoped lang="less">
+.spinWrap{
+  width: 100%;
+  height: 100%;
+  :deep(.ant-spin-container){
+    width: 100%;
+    height: 100%;
+  }
+}
 .map-container {
   height: 100%;
   width: 100%;

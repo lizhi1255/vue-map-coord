@@ -21,6 +21,9 @@ watchEffect(() => {
 
 <template>
   <a-button @click="switchShow">切换</a-button>
-  <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'高德地图key'" :map-config="{ height: '600px' }"
-    @onCoordChange='onCoordChange' v-model:position="position" />
+  <div style="height:600px">
+    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'高德地图key'" @onCoordChange='onCoordChange'
+      v-model:position="position" />
+  </div>
+
 </template>
