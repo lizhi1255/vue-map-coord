@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import CoordMap from './plugins/components/CoordMap.vue'
+import CoordMap from '../plugins/components/CoordMap.vue'
 
 const onCoordChange = (value: any) => {
   console.log(value);

@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      include: ["src/plugins"],
+      include: ["plugins"],
       outputDir: path.resolve("dist", "types"),
     }),
     Components({
@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/plugins/index.ts"),
+      entry: resolve(__dirname, "plugins/index.ts"),
       name: "CoordMap",
       fileName: (format) => `coord-map.${format}.js`,
     },
