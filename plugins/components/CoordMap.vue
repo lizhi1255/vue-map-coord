@@ -50,6 +50,8 @@ const emits = defineEmits<{
   }): void,
   (e: 'update:position', value: SORN[]): void
 }>()
+
+// 防抖
 class Debounce {
   delay: number;
   timeout: NodeJS.Timeout | null;
@@ -57,7 +59,6 @@ class Debounce {
     this.delay = delay ? delay : 200;
     this.timeout = null;
   }
-
   debounceEnd() {
     return new Promise((resolve, reject) => {
       if (this.timeout) {
@@ -68,8 +69,8 @@ class Debounce {
       }, this.delay)
     })
   }
-
 }
+
 onMounted(() => {
   initMap()
 });
