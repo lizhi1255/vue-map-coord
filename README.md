@@ -1,15 +1,12 @@
 # vue-map-coord
 
-基于vue3和高德地图的坐标拾取工具，具有坐标查询，地址查询，坐标拾取等功能、
+基于 vue3 和高德地图的坐标拾取工具，具有坐标查询，地址查询，坐标拾取等功能、
 
 ## 效果展示
 
-
-
 ## 安装
 
--  `NPM`
-
+- `NPM`
 
 ```shell
 npm install vue-map-coord --save
@@ -17,13 +14,11 @@ npm install vue-map-coord --save
 
 - `Yarn`
 
-
 ```shell
 yan add element-plus
 ```
 
 - `browser`
-
 
 ```html
 <script src="https://unpkg.com/browse/vue-map-coord/coord-map.umd.js"></script>
@@ -35,29 +30,27 @@ yan add element-plus
 
 - `mapKey`
 
-  > 高德地图key
-  >
-  > ```json
-  > type:string;
-  > required:true;
-  > ```
+  > 高德地图 key
+
+  ```js
+  type: string;
+  required: true;
+  ```
 
 - `position`
 
   > 默认经纬度坐标
 
-  ```json
+  ```js
   type:string|number[]; //[lng,lat]
   required:false;
   ```
-
-  
 
 - `mapConfig`
 
   > 地图组件配置项
 
-  ```json
+  ```js
   type:{
       width?:string, //地图宽度
       height?:string, //地图高度
@@ -66,7 +59,7 @@ yan add element-plus
       satellite?:boolean, //是否开启卫星图
   };
   default:{
-      width:'100%', 
+      width:'100%',
       height:'100%',
       satellite:false,
       zoom:10
@@ -80,7 +73,7 @@ yan add element-plus
 
   > 当点位地址变化时触发的事件
 
-  ```json
+  ```js
    //回调参数
   {
   	lng:string|number, //经度
@@ -89,9 +82,9 @@ yan add element-plus
   	address:Address, //地址对象
   	formattedAddress:string //地址
   }
-  
+
   interface Address{ //address类型
-  	addressComponent: {	
+  	addressComponent: {
   	citycode:string,
   	adcode:string,
   	businessAreas:string[],
@@ -108,7 +101,6 @@ yan add element-plus
   	roads: string[]
   };
   ```
-  
 
 ### 方法
 
@@ -125,7 +117,6 @@ yan add element-plus
 
   > 重置并销毁地图
 
-
 ## 注意项
 
 > 组件所在容器需设置高度，或者在配置项属性里设置组件的高度，如 :mapCofing="{height:'600px'}"
@@ -136,35 +127,35 @@ yan add element-plus
 
 - 全局组件注册`install`
 
-```json
+```js
 // **main.js**
 import { createApp } from "vue";
 import App from "./App.vue";
 import CoordMap from "vue-map-coord-pickup";
 import "vue-map-coord-pickup/style.css";
 const app = createApp(App);
-app.use(CoordMap)
+app.use(CoordMap);
 app.mount("#app");
 ```
 
-- 单个.vue文件局部注册
+- 单个.vue 文件局部注册
 
 ```vue
 //Options API
 <script>
-    import { CoordMap } from 'vue-map-coord-pickup'
-	import 'vue-map-coord-pickup/style.css'
-    export default {
-        components: {
-            CoordMap
-        }
-    }
+import { CoordMap } from "vue-map-coord-pickup";
+import "vue-map-coord-pickup/style.css";
+export default {
+  components: {
+    CoordMap,
+  },
+};
 </script>
 
 //Composition API
 <script setup>
-	import { CoordMap } from 'vue-map-coord-pickup'
-	import 'vue-map-coord-pickup/style.css'
+import { CoordMap } from "vue-map-coord-pickup";
+import "vue-map-coord-pickup/style.css";
 </script>
 ```
 
@@ -172,24 +163,27 @@ app.mount("#app");
 
 ```vue
 <script setup>
-import { ref,watchEffect } from 'vue';
-import CoordMap from 'vue-map-coord-pickup'
+import { ref, watchEffect } from "vue";
+import CoordMap from "vue-map-coord-pickup";
 
 const onCoordChange = (value: any) => {
   console.log(value);
-}
-const position = ref([120.405985, 36.120701])
-const CoordMapRef = ref()
+};
+const position = ref([120.405985, 36.120701]);
+const CoordMapRef = ref();
 watchEffect(() => {
   console.log(position.value);
-})
+});
 </script>
 
 <template>
   <div style="height:600px">
-    <CoordMap ref="CoordMapRef" mapKey="高德地图key" @onCoordChange='onCoordChange'
-      v-model:position="position" />
+    <CoordMap
+      ref="CoordMapRef"
+      mapKey="高德地图key"
+      @onCoordChange="onCoordChange"
+      v-model:position="position"
+    />
   </div>
 </template>
 ```
-
