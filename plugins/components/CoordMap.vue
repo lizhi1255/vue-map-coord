@@ -4,7 +4,7 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { onMounted, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
+import { customRef, onMounted, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 
 type SORN = string | number
@@ -50,7 +50,26 @@ const emits = defineEmits<{
   }): void,
   (e: 'update:position', value: SORN[]): void
 }>()
+class Debounce {
+  delay: number;
+  timeout: NodeJS.Timeout | null;
+  constructor(delay?: number) {
+    this.delay = delay ? delay : 200;
+    this.timeout = null;
+  }
 
+  debounceEnd() {
+    return new Promise((resolve, reject) => {
+      if (this.timeout) {
+        clearTimeout(this.timeout)
+      }
+      this.timeout = setTimeout(() => {
+        resolve('success');
+      }, this.delay)
+    })
+  }
+
+}
 onMounted(() => {
   initMap()
 });
@@ -129,20 +148,14 @@ const onMovingMaker = (e: any) => {
   position.value = e.target._position
 }
 
-let timer: NodeJS.Timeout | null = null
-watch(() => position.value, (newVal) => {
+const positionDe = new Debounce()
+watch(() => position.value, async (newVal) => {
   if (!newVal[0] || !newVal[1]) return
-  if (timer) {
-    clearTimeout(timer)
-    timer = null
-  }
-  timer = setTimeout(() => {
-    address.value = ''
-    createMarker(newVal[0], newVal[1])
-    getAddress(newVal[0], newVal[1])
-    MapRef.value.setCenter(newVal)
-  }, 200)
-
+  await positionDe.debounceEnd()
+  address.value = ''
+  createMarker(newVal[0], newVal[1])
+  getAddress(newVal[0], newVal[1])
+  MapRef.value.setCenter(newVal)
 }, { deep: true, })
 
 watchEffect(() => {
@@ -182,7 +195,9 @@ const mode = ref<'search' | 'result'>("search")
 const query = ref('')
 const tips = shallowRef<{ value: string, label: string }[]>([])
 const searching = ref(false)
-const autoComplete = (searchText: string) => {
+const searchDe = new Debounce()
+const autoComplete = async (searchText: string) => {
+  await searchDe.debounceEnd()
   if (!searchText) {
     tips.value = [];
   } else {
@@ -241,7 +256,7 @@ const reset = () => {
   mode.value = 'search'
   searchObj.results = []
   searchObj.total = 0
-  PlaceSearchRef.value.setPageIndex(1);
+  PlaceSearchRef.value?.setPageIndex(1);
 }
 const focus = (poi: { location: { lng: number, lat: number } }) => {
   const pos = [poi.location.lng, poi.location.lat];
@@ -261,7 +276,6 @@ window.onresize = () => {
 
 // 重置地图
 const resetMap = (posClear = false) => {
-  if (!MapRef.value || !AMapRef.value) return
   reset()
   query.value = ''
   searching.value = false
@@ -269,9 +283,9 @@ const resetMap = (posClear = false) => {
   initLoading.value = false
   satellite.value = props.mapConfig.satellite
   if (props.position && !posClear) return
-  MapRef.value.setCenter(initCenter.value)
+  MapRef.value?.setCenter(initCenter.value)
   markerRef.value = null
-  MapRef.value.clearMap()
+  MapRef.value?.clearMap()
   address.value = ''
   position.value = ['', '']
 }
@@ -279,7 +293,7 @@ const resetMap = (posClear = false) => {
 // 卸载地图
 const destroyMap = () => {
   resetMap()
-  MapRef.value.destroy()
+  MapRef.value?.destroy()
 }
 defineExpose({ resetMap, destroyMap })
 
@@ -372,14 +386,16 @@ defineExpose({ resetMap, destroyMap })
 </template>
 
 <style scoped lang="less">
-.spinWrap{
+.spinWrap {
   width: 100%;
   height: 100%;
-  :deep(.ant-spin-container){
+
+  :deep(.ant-spin-container) {
     width: 100%;
     height: 100%;
   }
 }
+
 .map-container {
   height: 100%;
   width: 100%;
