@@ -4,7 +4,7 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { customRef, onMounted, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
+import { customRef, onMounted, onUnmounted, Ref, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 
 type SORN = string | number
@@ -148,6 +148,7 @@ const createMarker = (lng: SORN, lat: SORN) => {
 const onMovingMaker = (e: any) => {
   position.value = e.target._position
 }
+
 
 const positionDe = new Debounce()
 watch(() => position.value, async (newVal) => {

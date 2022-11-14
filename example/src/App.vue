@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import CoordMap from '../plugins/components/CoordMap.vue'
+import { CoordMap } from '../../src/index'
 
 const onCoordChange = (value: any) => {
   console.log(value);
@@ -22,8 +22,8 @@ watchEffect(() => {
 <template>
   <a-button @click="switchShow">切换</a-button>
   <div style="height:600px">
-    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'高德地图key'" @onCoordChange='onCoordChange'
-      v-model:position="position" />
+    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'92bf1b30d5d094e6a625fd046e52f2db'"
+      @onCoordChange='onCoordChange' v-model:position="position" />
   </div>
 
 </template>
