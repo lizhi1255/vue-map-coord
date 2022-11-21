@@ -3,7 +3,7 @@
   "private": false,
   "author": "lizhi",
   "version": "1.0.9",
-  "description": "Coordinate pickup tool based on vue3 and GaoDe map",
+  "description": "coordinate pickup tool based on vue3 and GaoDe map",
   "keywords": [
     "vue",
     "vue3",
