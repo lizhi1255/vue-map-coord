@@ -4,21 +4,22 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { customRef, onMounted, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
+import { onMounted, ref, shallowReactive, shallowRef, toRaw, watch, watchEffect } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
+import { CoordChangeProps, SORN, Address, CoordMapExpose } from '../types';
 
-type SORN = string | number
 
 interface Props {
-  mapKey: string, //高德地图key
-  mapConfig?: { //地图配置
-    width?: string, //地图宽度
-    height?: string, //地图高度
-    center?: number[], //地图中心
-    zoom?: number, //地图层级
-    satellite?: boolean, //是否开启卫星图
-  },
-  position?: SORN[] //[lng,lat]
+  mapKey: string; //高德地图key
+  mapConfig?: {
+    //地图配置
+    width?: string; //地图宽度
+    height?: string; //地图高度
+    center?: number[]; //地图中心
+    zoom?: number; //地图层级
+    satellite?: boolean; //是否开启卫星图
+  };
+  position?: SORN[]; //[lng,lat]
 }
 
 const props = withDefaults(defineProps<Props>(),
@@ -33,21 +34,8 @@ const props = withDefaults(defineProps<Props>(),
   },
 )
 
-interface Address {
-  addressComponent: {
-    citycode: string, adcode: string, businessAreas: string[], neighborhoodType: string, neighborhood: string, province
-    : string, street: string, streetNumber: string, township: string
-  },
-  crosses: string[], formattedAddress: string, pois: string[], roads: string[]
-}
 const emits = defineEmits<{
-  (e: 'onCoordChange', value: {
-    lng: SORN,
-    lat: SORN,
-    position: SORN[],
-    address: Address,
-    formattedAddress: string
-  }): void,
+  (e: 'onCoordChange', value: CoordChangeProps): void,
   (e: 'update:position', value: SORN[]): void
 }>()
 
@@ -296,7 +284,8 @@ const destroyMap = () => {
   resetMap()
   MapRef.value?.destroy()
 }
-defineExpose({ resetMap, destroyMap })
+
+defineExpose<CoordMapExpose>({ resetMap, destroyMap })
 
 </script>
 

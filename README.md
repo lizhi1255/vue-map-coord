@@ -83,29 +83,29 @@ yan add element-plus
   ```js
   // 回调参数
   {
-  	lng:string|number, //经度
-  	lat:string|number, //纬度
-  	position:string|number[], //经纬度数组[经度，纬度]
-  	address:Address, //地址对象
-  	formattedAddress:string //地址
+      lng:string|number, //经度
+      lat:string|number, //纬度
+      position:string|number[], //经纬度数组[经度，纬度]
+      address:Address, //地址对象
+      formattedAddress:string //地址
   };
   // address类型
   interface Address{
-  	addressComponent: {
-  	citycode:string,
-  	adcode:string,
-  	businessAreas:string[],
-  	neighborhoodType:string,
-  	neighborhood: string,
-  	province: string,
-  	street: string,
-  	streetNumber: string,
-  	township: string
-  	},
-  	crosses: string[],
-  	formattedAddress: string,
-  	pois: string[],
-  	roads: string[]
+      addressComponent: {
+          citycode:string,
+          adcode:string,
+          businessAreas:string[],
+          neighborhoodType:string,
+          neighborhood: string,
+          province: string,
+          street: string,
+          streetNumber: string,
+          township: string
+      },
+      crosses: string[],
+      formattedAddress: string,
+      pois: string[],
+      roads: string[]
   };
   ```
 
@@ -170,13 +170,13 @@ import { CoordMap } from "vue-map-coord-pickup";
 ```vue
 <script setup>
 import { ref, watchEffect } from "vue";
-import CoordMap from "vue-map-coord-pickup";
+import CoordMap, { CoordChangeProps, CoordMapExpose } from "vue-map-coord";
 
-const onCoordChange = (value: any) => {
+const onCoordChange = (value: CoordChangeProps) => {
   console.log(value);
 };
 const position = ref([120.405985, 36.120701]);
-const CoordMapRef = ref();
+const CoordMapRef = ref<CoordMapExpose>();
 watchEffect(() => {
   console.log(position.value);
 });

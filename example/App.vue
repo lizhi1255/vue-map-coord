@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import CoordMap from '../plugins/components/CoordMap.vue'
+import { CoordChangeProps, CoordMapExpose } from '../packages';
+import { CoordMap } from '../packages'
 
-const onCoordChange = (value: any) => {
+const onCoordChange = (value: CoordChangeProps) => {
   console.log(value);
 }
 const position = ref([120.405985, 36.120701])
 const show = ref(true)
-const CoordMapRef = ref()
+const CoordMapRef = ref<CoordMapExpose>()
 const switchShow = () => {
   show.value = !show.value
   if (!show.value) {
-    CoordMapRef.value.resetMap()
+    CoordMapRef.value?.resetMap()
   }
 }
 watchEffect(() => {
@@ -22,8 +23,8 @@ watchEffect(() => {
 <template>
   <a-button @click="switchShow">切换</a-button>
   <div style="height:600px">
-    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'高德地图key'" @onCoordChange='onCoordChange'
-      v-model:position="position" />
+    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="'92bf1b30d5d094e6a625fd046e52f2db'"
+      @onCoordChange='onCoordChange' v-model:position="position" />
   </div>
 
 </template>
