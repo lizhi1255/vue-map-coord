@@ -23,19 +23,10 @@
   "unpkg": "./dist/coord-map.umd.js",
   "types": "./dist/types/index.d.ts",
   "style": "dist/style.css",
-  "exports": {
-    ".": {
-      "import": "./dist/coord-map.es.js",
-      "require": "./dist/coord-map.umd.js",
-      "types": "./dist/types/CoordMap.vue.d.ts"
-    },
-    "./*": "./*"
-  },
   "files": [
     "package.json",
     "README.md",
     "LICENSE.md",
-    "dist/style.css",
     "dist/coord-map.es.js",
     "dist/coord-map.umd.js",
     "dist/types/index.d.ts",
