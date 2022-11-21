@@ -139,7 +139,6 @@ yan add element-plus
 import { createApp } from "vue";
 import App from "./App.vue";
 import CoordMap from "vue-map-coord-pickup";
-import "vue-map-coord-pickup/style.css";
 const app = createApp(App);
 app.use(CoordMap);
 app.mount("#app");
@@ -151,7 +150,6 @@ app.mount("#app");
 // Options API 方式
 <script>
 import { CoordMap } from "vue-map-coord-pickup";
-import "vue-map-coord-pickup/style.css";
 export default {
   components: {
     CoordMap,
@@ -164,7 +162,6 @@ export default {
 // Composition API 方式
 <script setup>
 import { CoordMap } from "vue-map-coord-pickup";
-import "vue-map-coord-pickup/style.css";
 </script>
 ```
 
