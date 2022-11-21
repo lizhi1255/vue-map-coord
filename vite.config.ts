@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      include: ["plugins"],
+      include: ["packages"],
       outputDir: path.resolve("dist", "types"),
     }),
     Components({
@@ -19,15 +19,15 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "plugins/index.ts"),
-      name: "CoordMap",
+      entry: resolve(__dirname, "packages/index.ts"),
+      name: "coordMap",
       fileName: (format) => `coord-map.${format}.js`,
     },
     rollupOptions: {
-      // 确保外部化处理那些你不想打包进库的依赖
+      // 外部化处理不打包进库的依赖
       external: ["vue"],
       output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+        // 在 UMD 构建模式下为外部化的依赖提供一个全局变量
         globals: {
           vue: "Vue",
         },

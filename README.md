@@ -21,7 +21,7 @@ yan add element-plus
 - `browser`
 
 ```html
-<script src="https://unpkg.com/browse/vue-map-coord/coord-map.umd.js"></script>
+<script src="https://unpkg.com/browse/vue-map-coord/dist/coord-map.umd.js"></script>
 ```
 
 ## 组件配置

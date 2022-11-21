@@ -18,10 +18,10 @@
     "example/**/*.d.ts",
     "example/**/*.tsx",
     "example/**/*.vue",
-    "plugins/**/*.ts",
-    "plugins/**/*.d.ts",
-    "plugins/**/*.tsx",
-    "plugins/**/*.vue"
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
