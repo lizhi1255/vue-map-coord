@@ -41,8 +41,6 @@ async function publish(version) {
     await run("git", ["commit", "-m", `build: release: ${version}`]);
     await run("git", ["tag", "-a", version, "-m", `${version}`]);
     await run("npm", ["publish"]);
-    await run("git", ["push", "--tags"]);
-    await run("git", ["push"]);
     step(`push version to ${version}\n`);
   } catch (error) {
     throw new Error(error);
