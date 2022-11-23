@@ -296,9 +296,9 @@ defineExpose<CoordMapExpose>({ resetMap, destroyMap })
       <div class="toolbar">
         <div>
           <a-card :body-style="{
-            'max-height': '450px',
-            'overflow-y': 'scroll',
-            'padding-top': 0,
+            maxHeight: '450px',
+            overflowY: 'auto',
+            paddingTop: 0,
           }" class="result-panel">
             <template v-slot:title>
               <template v-if="mode === 'search'">
