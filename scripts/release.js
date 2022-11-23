@@ -7,7 +7,15 @@ const { prompt } = require("enquirer");
 const execa = require("execa");
 
 // 版本类型
-const versionIncrements = ["patch", "minor", "major"];
+const versionIncrements = [
+  "patch",
+  "minor",
+  "major",
+  "prepatch",
+  "preminor",
+  "premajor",
+  "prerelease",
+];
 
 // 步骤打印
 const step = (msg) => console.log(chalk.green(msg));
@@ -37,6 +45,7 @@ function updatePackage(version) {
  */
 async function publish(version) {
   try {
+    await run("npm", ["run", "build"]);
     await run("git", ["add", "-A"]);
     await run("git", ["commit", "-m", `build: release: ${version}`]);
     await run("git", ["tag", "-a", version, "-m", `${version}`]);
