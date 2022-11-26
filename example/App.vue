@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import { CoordChangeProps, CoordMapExpose } from '../packages';
-import { CoordMap } from '../packages'
+import { CoordChangeProps, CoordMapExpose, CoordMap } from '../packages';
 
 const MAP_KEY = '高德地图key' //更换为你的高德地图key
 
