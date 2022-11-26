@@ -140,7 +140,7 @@ yan add element-plus
 // main.js
 import { createApp } from "vue";
 import App from "./App.vue";
-import CoordMap from "vue-map-coord-pickup";
+import CoordMap from "vue-map-coord";
 const app = createApp(App);
 app.use(CoordMap);
 app.mount("#app");
@@ -151,7 +151,7 @@ app.mount("#app");
 ```vue
 // Options API 方式
 <script>
-import { CoordMap } from "vue-map-coord-pickup";
+import { CoordMap } from "vue-map-coord";
 export default {
   components: {
     CoordMap,
@@ -163,7 +163,7 @@ export default {
 ```vue
 // Composition API 方式
 <script setup>
-import { CoordMap } from "vue-map-coord-pickup";
+import { CoordMap } from "vue-map-coord";
 </script>
 ```
 
@@ -172,7 +172,7 @@ import { CoordMap } from "vue-map-coord-pickup";
 ```vue
 <script setup>
 import { ref, watchEffect } from "vue";
-import CoordMap, { CoordChangeProps, CoordMapExpose } from "vue-map-coord";
+import { CoordMap,CoordChangeProps, CoordMapExpose } from "vue-map-coord";
 
 const onCoordChange = (value: CoordChangeProps) => {
   console.log(value);
