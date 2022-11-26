@@ -4,6 +4,8 @@
 
 ## 效果展示
 
+![image](/example/images/example.gif)
+
 ## 安装
 
 - `NPM`
