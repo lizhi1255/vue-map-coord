@@ -61,7 +61,7 @@ yan add element-plus
   type:{
       width?:string, //地图宽度
       height?:string, //地图高度
-      center?:number[], //地图中心
+      center?:number[], //地图中心 如传入position属性 则默认以position为地图中心坐标
       zoom?:number, //地图层级
       satellite?:boolean, //是否开启卫星图
   };
