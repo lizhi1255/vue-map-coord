@@ -28,3 +28,8 @@ export interface CoordMapExpose {
   resetMap: (posClear?: boolean) => void;
   destroyMap: () => void;
 }
+declare global {
+  interface Window {
+    _AMapSecurityConfig: { securityJsCode: string };
+  }
+}
