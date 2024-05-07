@@ -4,7 +4,7 @@ import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import path, { resolve } from "path";
 import dts from "vite-plugin-dts";
-import VitePluginStyleInject from "vite-plugin-style-inject";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
     Components({
       resolvers: [AntDesignVueResolver()],
     }),
-    VitePluginStyleInject(),
+    cssInjectedByJsPlugin(),
   ],
   build: {
     lib: {

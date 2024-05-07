@@ -3,6 +3,7 @@ import { ref, watchEffect } from 'vue';
 import { CoordChangeProps, CoordMapExpose, CoordMap } from '../packages';
 
 const MAP_KEY = '高德地图key' //更换为你的高德地图key
+const SECURITY_JS_CODE = '高德地图安全码' //更换为你的高德地图安全码
 
 const onCoordChange = (value: CoordChangeProps) => {
   console.log(value);
@@ -24,7 +25,7 @@ watchEffect(() => {
 <template>
   <a-button @click="switchShow">切换</a-button>
   <div style="height:600px">
-    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="MAP_KEY" @onCoordChange='onCoordChange'
+    <CoordMap v-show="show" ref="CoordMapRef" :mapKey="MAP_KEY" :securityJsCode="SECURITY_JS_CODE" @onCoordChange='onCoordChange'
       v-model:position="position" />
   </div>
 
