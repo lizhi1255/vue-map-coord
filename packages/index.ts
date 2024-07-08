@@ -8,6 +8,6 @@ export type { CoordChangeProps, CoordMapExpose }; //类型导出
 
 const components = [CoordMap];
 const install = (app: App, options: any) => {
-  components.forEach((comp) => app.component(comp.name, comp));
+  components.forEach((comp) => app.component(comp.name || "CoordMap", comp));
 };
 export default { install };

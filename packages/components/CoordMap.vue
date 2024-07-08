@@ -11,6 +11,7 @@ import { CoordChangeProps, SORN, Address, CoordMapExpose } from '../types';
 
 interface Props {
   mapKey: string; //高德地图key
+  securityJsCode?: string; //高德地图安全密钥
   mapConfig?: {
     //地图配置
     width?: string; //地图宽度
@@ -71,6 +72,9 @@ const initLoading = ref(false)
 const initCenter = ref([])
 const initMap = async () => {
   initLoading.value = true
+  window._AMapSecurityConfig = {
+    securityJsCode: props.securityJsCode || '',
+  };
   const AMap = await AMapLoader.load({
     key: props.mapKey,
     version: "2.0",
